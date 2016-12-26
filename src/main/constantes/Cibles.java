@@ -15,7 +15,7 @@ public class Cibles {
 	 */
 	public static final CibleBean SAISIE_MDP =  new CibleBean(Clefs.NAME, "mdp");
 	
-	/**TODO Demande de vérification à Fabien
+	/**
 	 * Bouton de validation des identifiants d'accès à Izigate
 	 */
 	public static final CibleBean BOUTON_VALIDATION_LOGIN =  new CibleBean(Clefs.XPATH, "html/body/table[4]/tbody/tr/td[1]/input");
@@ -28,17 +28,17 @@ public class Cibles {
 	/**
 	 * Onglet de sélection du distributeur CE
 	 */
-	public static final CibleBean BOUTON_ONGLET_CE = new CibleBean(Clefs.VALEUR, "CE");
+	public static final CibleBean BOUTON_ONGLET_CE = new CibleBean(Clefs.XPATH, "html/body/table[2]/tbody/tr/td/table/tbody/tr/td[1]");
 	
 	/**
 	 * Onglet de sélection du distributeur BPOP
 	 */
-	public static final CibleBean BOUTON_ONGLET_BPOP = new CibleBean(Clefs.VALEUR, "BPOP");
+	public static final CibleBean BOUTON_ONGLET_BPOP = new CibleBean(Clefs.XPATH, "html/body/table[2]/tbody/tr/td/table/tbody/tr/td[3]");
 	
 	/**
 	 * Onglet de sélection du distributeur BPCE IOM
 	 */
-	public static final CibleBean BOUTON_ONGLET_BPCEIOM = new CibleBean(Clefs.VALEUR, "BPCE IOM");
+	public static final CibleBean BOUTON_ONGLET_BPCEIOM = new CibleBean(Clefs.XPATH, "html/body/table[2]/tbody/tr/td/table/tbody/tr/td[5]");
 	
 	/**
 	 * Bouton d'accès à la page de mûrissement d'un dossier

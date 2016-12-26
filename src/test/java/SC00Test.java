@@ -20,16 +20,6 @@ import outils.XLSOutils;
  *
  */
 public class SC00Test extends CasEssaiBean {
-	private int distributeur = 0;
-	
-		public int getDistributeur() {
-			return distributeur;
-		}
-
-
-		public void setDistributeur(int distributeur) {
-			this.distributeur = distributeur;
-		}
 	/**
 	 * Ide de sérialisation.
 	 */
@@ -170,7 +160,7 @@ public class SC00Test extends CasEssaiBean {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// FONCTION COMMUNES :
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public void accesIzigate(SeleniumOutils outil) throws SeleniumException {
+	public String accesIzigate(SeleniumOutils outil) throws SeleniumException {
 		String login = PropertiesOutil.getInfoConstante("IZIGATE.login");
 		String password = PropertiesOutil.getInfoConstante("IZIGATE.password");
 		String url = Constantes.URL_IZIGATE;
@@ -181,9 +171,9 @@ public class SC00Test extends CasEssaiBean {
 		outil.viderEtSaisir(login, Cibles.SAISIE_LOGIN);
 		outil.viderEtSaisir(password, Cibles.SAISIE_MDP);
 		// Chargement d'IZIVENTE
-		outil.cliquer(Cibles.BOUTON_VALIDATION_LOGIN);		
-		outil.attendreChargementPage(Constantes.TITRE_PAGE_IZIGATE);
-	;
+		outil.cliquer(Cibles.BOUTON_VALIDATION_LOGIN);
+		String retour = "Accès à Izigate OK";
+		return retour;
 	}
 	
 
