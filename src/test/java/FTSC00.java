@@ -11,6 +11,7 @@ import exceptions.SeleniumException;
 import main.bean.CasEssaiIzigateBean;
 import main.constantes.Cibles;
 import main.constantes.Constantes;
+import main.outils.IZIGATEOutils;
 import moteurs.FirefoxImpl;
 import moteurs.GenericDriver;
 import outils.SeleniumOutils;
@@ -22,9 +23,9 @@ import outils.SeleniumOutils;
 public class FTSC00 extends SC00Test {
 	
 //Définir le distributeur (CE, BP ou CEBPIOM)
-int distributeur = Constantes.CAS_BP;
+int distributeur = Constantes.CAS_CE;
 //Définir le numéro FFI à rechercher FFI639214913 CE FFI805889660 BP
-String numFFI = "FFI805889660";
+String numFFI = "FFI639214913";
 //Définir l'action à réaliser sur le numéro FFI (null pour consultation et murissement, ou )
 String typeAction = "consultation";
 /**
@@ -175,7 +176,7 @@ public CasEssaiIzigateBean CT03Murissement(CasEssaiIzigateBean scenario, Seleniu
 	outil.attendreEtCliquer(Cibles.BOUTON_MURISSEMENT);
 	//Step 3 : Renseignement d'un numéro FFI et lancement d'une recherche pour consultation
 	outil.attendreChargementElement(Cibles.SAISIE_FFI_MURISSEMENT);
-	String siocid = outil.derniersCaractères(numFFI, 8);
+	String siocid = IZIGATEOutils.derniersCaracteres(numFFI, 8);
 	outil.viderEtSaisir(siocid, Cibles.SAISIE_FFI_MURISSEMENT);
 	outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
 	outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
