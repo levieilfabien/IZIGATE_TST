@@ -95,13 +95,15 @@ public CasEssaiIzigateBean CT01Initialisation(CasEssaiIzigateBean scenario, Sele
 	//Steps 1 et 2 : Acces à la page d'accueil, inscription des identifiants et accès à l'écran principal d'Izigate
 	String retour = accesIzigate(outil);
 	System.out.println(retour);
+	//outil.attendrePresenceTexte("Consultation base BP");
+	//System.out.println("Sélection du distributeur BP");
 	CT01.validerObjectif(outil.getDriver(), "Acces accueil", true);
 	CT01.validerObjectif(outil.getDriver(), "Acces Izigate", true);
 	CT01.validerObjectif(outil.getDriver(), CT01.getNomCasEssai() + CT01.getTime(),true);
 	return CT01;
 }
-
 public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, SeleniumOutils outil) throws SeleniumException {
+
 	//Paramètrage du CT02
 	CasEssaiIzigateBean CT02 = new CasEssaiIzigateBean();
 	//Information issues du scénario.
@@ -119,26 +121,25 @@ public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, Seleni
 	//Steps 1 et 2 : Sélection du distributeur et accès à la page de recherche d'un dossier en consultation
 	switch (distributeur){
 	case Constantes.CAS_CE :
-		outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
-		CT02.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
-		outil.attendrePresenceTexte("Consultation base CE");
-		CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
+	outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
+	CT02.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
+	outil.attendrePresenceTexte("Consultation base CE");
+	CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
 	break;
 	case Constantes.CAS_BP :
 	outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_BPOP);
 	outil.attendrePresenceTexte("Consultation base BP");
-	//CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
+	CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
 	System.out.println("Sélection du distributeur BP");
 	break;}
 	//Step 3 : Renseignement d'un numéro FFI et lancement d'une recherche pour consultation
-	
 	outil.attendreChargementElement(Cibles.SAISIE_FFI_CONSULT);
 	outil.viderEtSaisir(numFFI, Cibles.SAISIE_FFI_CONSULT);
 	outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
 	outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
 	CT02.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 	CT02.validerObjectif(outil.getDriver(), CT02.getNomCasEssai() + CT02.getTime(),true);
-return CT02;
+	return CT02;
 }
 
 public CasEssaiIzigateBean CT03Murissement(CasEssaiIzigateBean scenario, SeleniumOutils outil) throws SeleniumException {
@@ -174,15 +175,13 @@ public CasEssaiIzigateBean CT03Murissement(CasEssaiIzigateBean scenario, Seleniu
 	break;}
 	//Step 2 : Accéder à la page de recherche d'un dossier pour mûrissement
 	outil.attendreEtCliquer(Cibles.BOUTON_MURISSEMENT);
-	//Step 3 : Renseignement d'un numéro FFI et lancement d'une recherche pour consultation
 	outil.attendreChargementElement(Cibles.SAISIE_FFI_MURISSEMENT);
 	String siocid = IZIGATEOutils.derniersCaracteres(numFFI, 8);
 	outil.viderEtSaisir(siocid, Cibles.SAISIE_FFI_MURISSEMENT);
 	outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
 	outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
 	CT03.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
-
 	CT03.validerObjectif(outil.getDriver(), CT03.getNomCasEssai() + CT03.getTime(),true);
-return CT03;
+	return CT03;
 }
 }
