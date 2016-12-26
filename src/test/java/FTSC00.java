@@ -98,8 +98,8 @@ public CasEssaiIzigateBean CT01Initialisation(CasEssaiIzigateBean scenario, Sele
 	String url = Constantes.URL_IZIGATE;
 	outil.chargerUrl(url);
 	outil.attendreChargementPage(Constantes.TITRE_PAGE_IZIGATE);
-	//outil.viderEtSaisir(login, Cibles.SAISIE_LOGIN);
-	//outil.viderEtSaisir(password, Cibles.SAISIE_MDP);
+	outil.viderEtSaisir(login, Cibles.SAISIE_LOGIN);
+	outil.viderEtSaisir(password, Cibles.SAISIE_MDP);
 	outil.cliquer(Cibles.BOUTON_VALIDATION_LOGIN);
 	outil.attendreChargementElement(Cibles.SAISIE_FFI_CONSULT);
 	outil.viderEtSaisir(numFFI, Cibles.SAISIE_FFI_CONSULT);
