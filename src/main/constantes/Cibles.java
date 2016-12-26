@@ -43,7 +43,7 @@ public class Cibles {
 	/**
 	 * Bouton d'accès à la page de mûrissement d'un dossier
 	 */
-	public static final CibleBean BOUTON_MURISSEMENT = new CibleBean(Clefs.VALEUR, "Mûrissement d'un dossier");
+	public static final CibleBean BOUTON_MURISSEMENT = new CibleBean(Clefs.XPATH, "html/body/table[3]/tbody/tr/td/table/tbody/tr/td[5]");
 	
 	/**
 	 * Zone de saisie du numéro FFI pour le mûrissement d'un dossier
