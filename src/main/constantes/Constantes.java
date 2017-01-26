@@ -24,7 +24,7 @@ public class Constantes {
 //	public static final String REPERTOIRE_TEST = PropertiesOutil.getInfoConstante("REPERTOIRE_TEST");
 //	public static final String REPERTOIRE_TEST2 = PropertiesOutil.getInfoConstante("REPERTOIRE_TEST2");
 
-	public static final String URL_IZIGATE = PropertiesOutil.getInfoConstante("URL_IZIGATE_RECETTE");
+	public static final String URL_IZIGATE = PropertiesOutil.getInfoConstante("URL_IZIGATE");
 	
 	public static final String TITRE_PAGE_IZIGATE = "IZIGATE - Login";
 
