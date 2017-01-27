@@ -19,7 +19,7 @@ import outils.XLSOutils;
  * @author levieilfa
  *
  */
-public class SC00Test extends CasEssaiBean {
+public class FonctionsTestIzigate extends CasEssaiBean {
 	/**
 	 * Ide de sérialisation.
 	 */
@@ -166,7 +166,7 @@ public class SC00Test extends CasEssaiBean {
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// FONCTION COMMUNES :
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public String accesIzigate(SeleniumOutils outil) throws SeleniumException {
+	public static String accesIzigate(SeleniumOutils outil) throws SeleniumException {
 		String login = PropertiesOutil.getInfoConstante("IZIGATE.login");
 		String password = PropertiesOutil.getInfoConstante("IZIGATE.password");
 		String url = Constantes.URL_IZIGATE;

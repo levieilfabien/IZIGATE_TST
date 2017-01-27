@@ -20,7 +20,7 @@ import outils.SeleniumOutils;
  * Scénario modularisé des tests automatisés sur Izizgate - 12/2016
  * @author levieilfa bardouma
  */
-public class FTSC00 extends SC00Test {
+public class SC00Izigate extends FonctionsTestIzigate {
 	
 //Définir le distributeur (CE, BP ou CEBPIOM)
 int distributeur = Constantes.CAS_BP;
