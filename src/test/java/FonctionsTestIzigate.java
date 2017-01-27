@@ -19,7 +19,7 @@ import outils.XLSOutils;
  * @author levieilfa
  *
  */
-public class FonctionsTestIzigate extends CasEssaiBean {
+public class FonctionsTestIzigate extends SC00Test {
 	/**
 	 * Ide de sérialisation.
 	 */
@@ -82,12 +82,6 @@ public class FonctionsTestIzigate extends CasEssaiBean {
 	 * @param ex l'exception générant l'erreur
 	 * @throws SeleniumException en cas d'erreur.
 	 */
-	public final void finaliserTestEnErreur(final SeleniumOutils outil, final CasEssaiBean casEssai, final SeleniumException ex, final String idObjectif) throws SeleniumException {
-		ex.printStackTrace();
-		casEssai.setCommentaire(ex.toString());
-		logger(ex.toString());
-		finaliserTest(outil, casEssai, idObjectif, false);
-	}
 
 	/**
 	 * Finalise l'execution d'un test en renseignant les log du cas d'essai et du test à  partir des
@@ -118,10 +112,10 @@ public class FonctionsTestIzigate extends CasEssaiBean {
 
 		logger(casEssai.toString());
 
-		//TODO A remettre
-//		if (outils != null) {
-//			outils.getDriver().quit();
-//		}
+		//TODO Permet de fermer la fenetre lorsque le driver n'a plus d'action en cours
+		if (outils != null) {
+			outils.getDriver().quit();	
+			}
 
 		// On renseigne le rapport d'execution avec les données du cas de test.
 		XLSOutils.renseignerExcel(casEssai);
@@ -133,29 +127,7 @@ public class FonctionsTestIzigate extends CasEssaiBean {
 		}
 	}
 	
-	/**
-	 * Fonction de finalisation de test.
-	 * @param outil la boite à outil.
-	 * @param casEssai le cas d'essai.
-	 * @param idObjectif l'id de l'objectif final.
-	 * @throws SeleniumException en cas d'erreur.
-	 */
-	public final void finaliserTest(SeleniumOutils outil, CasEssaiBean casEssai, final String idObjectif) throws SeleniumException {
-		finaliserTest(outil, casEssai, idObjectif, true);
-	}
 	
-	/**
-	 * Permet d'ajouter une ligne dans le registre d'execution pour apporter plus d'informations.
-	 * 
-	 * @param append la chaine de caractère à  ajouter dans le registre d'execution.
-	 */
-	public final void logger(final String append) {
-		if (getLogs() != null) {
-			setLogs(getLogs() + "\n" + append);
-		} else {
-			setLogs(append);
-		}
-	}
 	/**
 	 * Permet de récupérer les n derniers caractères d'une chaîne
 	 * @param chaine

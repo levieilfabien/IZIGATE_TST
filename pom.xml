@@ -50,7 +50,7 @@
 		<!-- <dependency> <groupId>TAG_TST</groupId> <artifactId>TAG_TST</artifactId> 
 			<version>0.1.0-SNAPSHOT</version> </dependency> -->
 				<dependency>
-			<groupId>TAG_TST</groupId>
+			<groupId>TAG_TST</groupId>	
 			<artifactId>TAG_TST</artifactId>
 			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
