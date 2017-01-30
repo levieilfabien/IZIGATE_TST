@@ -20,7 +20,7 @@ import outils.SeleniumOutils;
  * Scénario modularisé des tests automatisés sur Izizgate - 12/2016
  * @author levieilfa bardouma
  */
-public class SC00Izigate extends FonctionsTestIzigate {
+public class TNRSC00Izigate extends SC00TestIzigate {
 	
 //Définir le distributeur (CE, BP ou CEBPIOM)
 int distributeur = Constantes.CAS_BP;
@@ -63,7 +63,7 @@ public void initialisationTest() throws SeleniumException {
 		//CT03 - Mûrissement d'un dossier
 		scenario0.getTests().add(CT01Initialisation(scenario0, outil));
 		scenario0.getTests().add(CT02Consultation(scenario0, outil));
-		scenario0.getTests().add(CT03Murissement(scenario0, outil));
+		//scenario0.getTests().add(CT03Murissement(scenario0, outil));
 		
 	} catch (SeleniumException ex) {
 		// Finalisation en erreur du cas de test.
@@ -137,6 +137,7 @@ public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, Seleni
 	CT02.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 	//TODO faire une vérification des données sur le numéro FFI ouvert "N° de dossier SM : FFI639214913"
 	outil.changerDeFenetre();
+	scenario.setNumeroDossierUnited(outil.obtenirValeur(Cibles.ELEMENT_SPAN_NODOSS_UNITED));
 	CT02.validerObjectif(outil.getDriver(), CT02.getNomCasEssai() + CT02.getTime(),true);
 	return CT02;
 }

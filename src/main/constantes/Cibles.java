@@ -59,4 +59,9 @@ public class Cibles {
 	 * Bouton d'envoi de recherche de dossier
 	 */
 	public static final CibleBean BOUTON_ENVOI_RECHERCHE = new CibleBean(Clefs.VALEUR, "Envoi");
+	
+	/**
+	 * 
+	 */
+	public static final CibleBean ELEMENT_SPAN_NODOSS_UNITED = new CibleBean(Clefs.XPATH, "html/body/table[3]/tbody/tr[4]/td[5]");
 }

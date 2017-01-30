@@ -20,7 +20,7 @@ import outils.SeleniumOutils;
 	 * Scénario modularisé des tests automatisés sur Izizgate - 12/2016
 	 * @author levieilfa bardouma
 	 */
-	public class SCConsultation extends FonctionsTestIzigate {
+	public class SCConsultation extends SC00TestIzigate {
 		
 	//Définir le distributeur (CE, BP ou CEBPIOM)
 	int distributeur = Constantes.CAS_BP;
@@ -33,11 +33,12 @@ import outils.SeleniumOutils;
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Test
-	public void initialisationTest() throws SeleniumException {
+	public CasEssaiIzigateBean lancementTestIzigate(CasEssaiIzigateBean scenario) throws SeleniumException {
 		
 		//Description du scénario
-		CasEssaiIzigateBean scenario0 = new CasEssaiIzigateBean();
+		CasEssaiIzigateBean scenario0 = scenario;
+		scenario0.setNumeroFFI(numFFI);
+		scenario0.setDistributeur(distributeur);
 		//Configuration du driver
 		FirefoxBinary ffBinary = new FirefoxBinary(new File(Constantes.EMPLACEMENT_FIREFOX));
 		FirefoxProfile profile = configurerProfilNatixis();
@@ -57,10 +58,10 @@ import outils.SeleniumOutils;
 	    outil.setRepertoireRacine(scenario0.getRepertoireTelechargement());
 	    
 	    try {
-			//CT01 - Initialisation et accès à Izigate
-			//CT02 - Consultation d'un dossier
-			scenario0.getTests().add(CT01Initialisation(scenario0, outil));
-			scenario0.getTests().add(CT02Consultation(scenario0, outil));
+			//CT09 - Initialisation et accès à Izigate
+			//CT10 - Consultation d'un dossier
+			scenario0.getTests().add(CT09InitialisationIzigate(scenario0, outil));
+			scenario0.getTests().add(CT10ConsultationIzigate(scenario0, outil));
 			
 		} catch (SeleniumException ex) {
 			// Finalisation en erreur du cas de test.
@@ -69,6 +70,8 @@ import outils.SeleniumOutils;
 		}
 		// Finalisation normale du cas de test.
 	    finaliserTest(outil, scenario0, scenario0.getNomCasEssai() + scenario0.getDateCreation().getTime());
+	    
+	    return scenario0;
 	}
 
 	/**
@@ -78,7 +81,7 @@ import outils.SeleniumOutils;
 	 * @return le cas d'essai documenté pour ajout au scénario.
 	 * @throws SeleniumException en cas d'erreur.
 	 */
-	public CasEssaiIzigateBean CT01Initialisation(CasEssaiIzigateBean scenario, SeleniumOutils outil) throws SeleniumException {
+	public CasEssaiIzigateBean CT09InitialisationIzigate(CasEssaiIzigateBean scenario, SeleniumOutils outil) throws SeleniumException {
 		//Paramètrage du CT01
 		CasEssaiIzigateBean CT01 = new CasEssaiIzigateBean();
 		//Information issues du scénario.
@@ -98,7 +101,7 @@ import outils.SeleniumOutils;
 		return CT01;
 	}
 	
-	public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, SeleniumOutils outil) throws SeleniumException {
+	public CasEssaiIzigateBean CT10ConsultationIzigate(CasEssaiIzigateBean scenario, SeleniumOutils outil) throws SeleniumException {
 		//Paramètrage du CT02
 		CasEssaiIzigateBean CT02 = new CasEssaiIzigateBean();
 		//Information issues du scénario.
@@ -113,27 +116,30 @@ import outils.SeleniumOutils;
 		// CONSULTATION D'UN DOSSIER
 		/////////////////////////////////////////////////////////////////////////////////////////////////////
 		//Steps 1 et 2 : Sélection du distributeur et accès à la page de recherche d'un dossier en consultation
-		switch (distributeur){
-		case Constantes.CAS_CE :
-		outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
-		CT02.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
-		outil.attendrePresenceTexte("Consultation base CE");
-		CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
-		break;
-		case Constantes.CAS_BP :
-		outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_BPOP);
-		outil.attendrePresenceTexte("Consultation base BP");
-		CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
-		System.out.println("Sélection du distributeur BP");
-		break;}
+		switch (scenario.getDistributeur()){
+			case Constantes.CAS_CE :
+				outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
+				CT02.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
+				outil.attendrePresenceTexte("Consultation base CE");
+				CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
+			break;
+			case Constantes.CAS_BP :
+				outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_BPOP);
+				outil.attendrePresenceTexte("Consultation base BP");
+				CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
+				System.out.println("Sélection du distributeur BP");
+			break;
+		}
 		//Step 3 : Renseignement d'un numéro FFI et lancement d'une recherche pour consultation
 		outil.attendreChargementElement(Cibles.SAISIE_FFI_CONSULT);
-		outil.viderEtSaisir(numFFI, Cibles.SAISIE_FFI_CONSULT);
+		outil.viderEtSaisir(scenario.getNumeroFFI(), Cibles.SAISIE_FFI_CONSULT);
 		outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
 		outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
 		CT02.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 		//TODO faire une vérification des données sur le numéro FFI ouvert "N° de dossier SM : FFI639214913"
 		outil.changerDeFenetre();
+		outil.attendreChargementElement(Cibles.ELEMENT_SPAN_NODOSS_UNITED);
+		scenario.setNumeroDossierUnited(outil.obtenirValeur(Cibles.ELEMENT_SPAN_NODOSS_UNITED));
 		CT02.validerObjectif(outil.getDriver(), CT02.getNomCasEssai() + CT02.getTime(),true);
 		return CT02;
 	}

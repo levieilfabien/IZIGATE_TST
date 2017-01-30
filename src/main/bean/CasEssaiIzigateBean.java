@@ -13,18 +13,35 @@ public class CasEssaiIzigateBean extends CasEssaiBean {
 	 * Id de sérialisation par défaut.
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private int distributeur;
 
 	/**
 	 * Le numéro FFI du dossier saisie si il y a lieu.
 	 */
 	private String numeroFFI = "";
 	
+	private String numeroDossierUnited = "";
 
-	
 	public CasEssaiIzigateBean() {
 		super();
 	}
+	
+	public String getNumeroDossierUnited() {
+		return numeroDossierUnited;
+	}
 
+	public void setNumeroDossierUnited(String numeroDossierUnited) {
+		this.numeroDossierUnited = numeroDossierUnited;
+	}
+
+	public int getDistributeur() {
+		return distributeur;
+	}
+
+	public void setDistributeur(int distributeur) {
+		this.distributeur = distributeur;
+	}
 	public String getNumeroFFI() {
 		return numeroFFI;
 	}
