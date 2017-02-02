@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.internal.ProfilesIni;
 
 import beans.CasEssaiBean;
 import exceptions.SeleniumException;
-import main.constantes.Cibles;
+import main.constantes.CiblesIzigate;
 import main.constantes.Constantes;
 import outils.ALMOutils;
 import outils.PropertiesOutil;
@@ -181,10 +181,10 @@ public class SC00TestIzigate extends CasEssaiBean {
 		// Attente de l'affichage du titre de la page
 		outil.attendreChargementPage(Constantes.TITRE_PAGE_IZIGATE);
 		// Génération de la chaine du Jeton	
-		outil.viderEtSaisir(login, Cibles.SAISIE_LOGIN);
-		outil.viderEtSaisir(password, Cibles.SAISIE_MDP);
+		outil.viderEtSaisir(login, CiblesIzigate.SAISIE_LOGIN);
+		outil.viderEtSaisir(password, CiblesIzigate.SAISIE_MDP);
 		// Chargement d'IZIVENTE
-		outil.cliquer(Cibles.BOUTON_VALIDATION_LOGIN);
+		outil.cliquer(CiblesIzigate.BOUTON_VALIDATION_LOGIN);
 		String retour = "Accès à Izigate OK";
 		return retour;
 	}

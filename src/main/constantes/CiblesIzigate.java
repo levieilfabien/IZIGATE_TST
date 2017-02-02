@@ -3,7 +3,7 @@ package main.constantes;
 import beans.CibleBean;
 import constantes.Clefs;
 
-public class Cibles {
+public class CiblesIzigate {
 	//////////////////////////////////////////////////////CIBLE A USAGE UNIQUE ///////////////////////////////////////////////////////////////
 	/**
 	 * Zone de saisie de l'identifiant de l'utilisateur
@@ -61,7 +61,7 @@ public class Cibles {
 	public static final CibleBean BOUTON_ENVOI_RECHERCHE = new CibleBean(Clefs.VALEUR, "Envoi");
 	
 	/**
-	 * 
+	 * Element contenant le numero de dossier UNITED du dossier consulté
 	 */
 	public static final CibleBean ELEMENT_SPAN_NODOSS_UNITED = new CibleBean(Clefs.XPATH, "html/body/table[3]/tbody/tr[4]/td[5]");
 }

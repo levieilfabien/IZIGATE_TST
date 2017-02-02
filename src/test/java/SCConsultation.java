@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import beans.ObjectifBean;
 import exceptions.SeleniumException;
 import main.bean.CasEssaiIzigateBean;
-import main.constantes.Cibles;
+import main.constantes.CiblesIzigate;
 import main.constantes.Constantes;
 import main.outils.IZIGATEOutils;
 import moteurs.FirefoxImpl;
@@ -22,12 +22,6 @@ import outils.SeleniumOutils;
 	 */
 	public class SCConsultation extends SC00TestIzigate {
 		
-	//Définir le distributeur (CE, BP ou CEBPIOM)
-	int distributeur = Constantes.CAS_BP;
-	//Définir le numéro FFI à rechercher FFI639214913 CE FFI805889660 BP
-	String numFFI = "FFI305891453";
-	//Définir l'action à réaliser sur le numéro FFI (null pour consultation et murissement, ou )
-	
 	/**
 	 * Id de sérialisation par défaut.
 	 */
@@ -37,8 +31,6 @@ import outils.SeleniumOutils;
 		
 		//Description du scénario
 		CasEssaiIzigateBean scenario0 = scenario;
-		scenario0.setNumeroFFI(numFFI);
-		scenario0.setDistributeur(distributeur);
 		//Configuration du driver
 		FirefoxBinary ffBinary = new FirefoxBinary(new File(Constantes.EMPLACEMENT_FIREFOX));
 		FirefoxProfile profile = configurerProfilNatixis();
@@ -118,28 +110,28 @@ import outils.SeleniumOutils;
 		//Steps 1 et 2 : Sélection du distributeur et accès à la page de recherche d'un dossier en consultation
 		switch (scenario.getDistributeur()){
 			case Constantes.CAS_CE :
-				outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
+				outil.attendreEtCliquer(CiblesIzigate.BOUTON_ONGLET_CE);
 				CT02.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
 				outil.attendrePresenceTexte("Consultation base CE");
 				CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
 			break;
 			case Constantes.CAS_BP :
-				outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_BPOP);
+				outil.attendreEtCliquer(CiblesIzigate.BOUTON_ONGLET_BPOP);
 				outil.attendrePresenceTexte("Consultation base BP");
 				CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
 				System.out.println("Sélection du distributeur BP");
 			break;
 		}
 		//Step 3 : Renseignement d'un numéro FFI et lancement d'une recherche pour consultation
-		outil.attendreChargementElement(Cibles.SAISIE_FFI_CONSULT);
-		outil.viderEtSaisir(scenario.getNumeroFFI(), Cibles.SAISIE_FFI_CONSULT);
-		outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
-		outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
+		outil.attendreChargementElement(CiblesIzigate.SAISIE_FFI_CONSULT);
+		outil.viderEtSaisir(scenario.getNumeroFFI(), CiblesIzigate.SAISIE_FFI_CONSULT);
+		outil.attendreChargementElement(CiblesIzigate.BOUTON_ENVOI_RECHERCHE);
+		outil.cliquer(CiblesIzigate.BOUTON_ENVOI_RECHERCHE);
 		CT02.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 		//TODO faire une vérification des données sur le numéro FFI ouvert "N° de dossier SM : FFI639214913"
 		outil.changerDeFenetre();
-		outil.attendreChargementElement(Cibles.ELEMENT_SPAN_NODOSS_UNITED);
-		scenario.setNumeroDossierUnited(outil.obtenirValeur(Cibles.ELEMENT_SPAN_NODOSS_UNITED));
+		outil.attendreChargementElement(CiblesIzigate.ELEMENT_SPAN_NODOSS_UNITED);
+		scenario.setNumeroDossierUnited(outil.obtenirValeur(CiblesIzigate.ELEMENT_SPAN_NODOSS_UNITED));
 		CT02.validerObjectif(outil.getDriver(), CT02.getNomCasEssai() + CT02.getTime(),true);
 		return CT02;
 	}

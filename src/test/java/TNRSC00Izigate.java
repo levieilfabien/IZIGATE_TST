@@ -9,7 +9,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 import beans.ObjectifBean;
 import exceptions.SeleniumException;
 import main.bean.CasEssaiIzigateBean;
-import main.constantes.Cibles;
+import main.constantes.CiblesIzigate;
 import main.constantes.Constantes;
 import main.outils.IZIGATEOutils;
 import moteurs.FirefoxImpl;
@@ -118,26 +118,26 @@ public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, Seleni
 	//Steps 1 et 2 : Sélection du distributeur et accès à la page de recherche d'un dossier en consultation
 	switch (distributeur){
 	case Constantes.CAS_CE :
-	outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
+	outil.attendreEtCliquer(CiblesIzigate.BOUTON_ONGLET_CE);
 	CT02.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
 	outil.attendrePresenceTexte("Consultation base CE");
 	CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
 	break;
 	case Constantes.CAS_BP :
-	outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_BPOP);
+	outil.attendreEtCliquer(CiblesIzigate.BOUTON_ONGLET_BPOP);
 	outil.attendrePresenceTexte("Consultation base BP");
 	CT02.validerObjectif(outil.getDriver(), "Page de consultation", true);
 	System.out.println("Sélection du distributeur BP");
 	break;}
 	//Step 3 : Renseignement d'un numéro FFI et lancement d'une recherche pour consultation
-	outil.attendreChargementElement(Cibles.SAISIE_FFI_CONSULT);
-	outil.viderEtSaisir(numFFI, Cibles.SAISIE_FFI_CONSULT);
-	outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
-	outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
+	outil.attendreChargementElement(CiblesIzigate.SAISIE_FFI_CONSULT);
+	outil.viderEtSaisir(numFFI, CiblesIzigate.SAISIE_FFI_CONSULT);
+	outil.attendreChargementElement(CiblesIzigate.BOUTON_ENVOI_RECHERCHE);
+	outil.cliquer(CiblesIzigate.BOUTON_ENVOI_RECHERCHE);
 	CT02.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 	//TODO faire une vérification des données sur le numéro FFI ouvert "N° de dossier SM : FFI639214913"
 	outil.changerDeFenetre();
-	scenario.setNumeroDossierUnited(outil.obtenirValeur(Cibles.ELEMENT_SPAN_NODOSS_UNITED));
+	scenario.setNumeroDossierUnited(outil.obtenirValeur(CiblesIzigate.ELEMENT_SPAN_NODOSS_UNITED));
 	CT02.validerObjectif(outil.getDriver(), CT02.getNomCasEssai() + CT02.getTime(),true);
 	return CT02;
 }
@@ -162,23 +162,23 @@ public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, Seleni
 		System.out.println(retour2);
 		switch (distributeur) {
 		case Constantes.CAS_CE :
-			outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_CE);
+			outil.attendreEtCliquer(CiblesIzigate.BOUTON_ONGLET_CE);
 			CT03.validerObjectif(outil.getDriver(), "Sélection du distributeur", true);
 			outil.attendrePresenceTexte("Consultation base CE");
 		break;
 		case Constantes.CAS_BP :
-			outil.attendreEtCliquer(Cibles.BOUTON_ONGLET_BPOP);
+			outil.attendreEtCliquer(CiblesIzigate.BOUTON_ONGLET_BPOP);
 			outil.attendrePresenceTexte("Consultation base BP");
 		break;
 		}
 		//Step 2 : Accéder à la page de recherche d'un dossier pour mûrissement
-		outil.attendreEtCliquer(Cibles.BOUTON_MURISSEMENT);
+		outil.attendreEtCliquer(CiblesIzigate.BOUTON_MURISSEMENT);
 		CT03.validerObjectif(outil.getDriver(), "Sélection du mûrissement", true);
-		outil.attendreChargementElement(Cibles.SAISIE_FFI_MURISSEMENT);
+		outil.attendreChargementElement(CiblesIzigate.SAISIE_FFI_MURISSEMENT);
 		String siocid = IZIGATEOutils.derniersCaracteres(numFFI, 8);
-		outil.viderEtSaisir(siocid, Cibles.SAISIE_FFI_MURISSEMENT);
-		outil.attendreChargementElement(Cibles.BOUTON_ENVOI_RECHERCHE);
-		outil.cliquer(Cibles.BOUTON_ENVOI_RECHERCHE);
+		outil.viderEtSaisir(siocid, CiblesIzigate.SAISIE_FFI_MURISSEMENT);
+		outil.attendreChargementElement(CiblesIzigate.BOUTON_ENVOI_RECHERCHE);
+		outil.cliquer(CiblesIzigate.BOUTON_ENVOI_RECHERCHE);
 		CT03.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 		outil.changerDeFenetre();
 		CT03.validerObjectif(outil.getDriver(), CT03.getNomCasEssai() + CT03.getTime(),true);
