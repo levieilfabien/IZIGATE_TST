@@ -182,7 +182,7 @@ public CasEssaiIzigateBean CT02Consultation(CasEssaiIzigateBean scenario, Seleni
 		CT03.validerObjectif(outil.getDriver(), "Renseignement du numéro FFI et envoi", true);
 		outil.changerDeFenetre();
 		CT03.validerObjectif(outil.getDriver(), CT03.getNomCasEssai() + CT03.getTime(),true);
-		//TODO réaliser une vérificatio sur la présence de la date de mûrissement
+		//TODO réaliser une vérification sur la présence de la date de mûrissement
 		return CT03;
 		}
 }
